@@ -4,17 +4,11 @@
   "private": true,
   "dependencies": {
     "@bgoodman/http-client": "^1.0.0",
-    "@bgoodman/simple-file-upload": "file:../simple-file-upload",
-    "@types/jest": "24.0.19",
-    "@types/node": "12.11.5",
-    "@types/react": "16.9.9",
-    "@types/react-dom": "16.9.2",
+    "@bgoodman/simple-file-upload": "@bgoodman/simple-file-upload",
     "p-throttle": "^3.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-icons": "^3.7.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.6.4"
+    "react-icons": "^3.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,6 +32,12 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "typescript": "3.7.2",
+    "react-scripts": "3.2.0",
+    "@types/jest": "24.0.19",
+    "@types/node": "12.11.5",
+    "@types/react": "16.9.9",
+    "@types/react-dom": "16.9.2"
   }
 }
