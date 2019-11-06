@@ -1,0 +1,25 @@
+.thumb-container {
+    width: 210px;
+    height: 230px;
+    cursor: pointer;
+}
+
+*[data-visible='false'] {
+    display: none;
+}
+
+*[data-visible='true'] {
+    display: block;
+}
+
+.thumb-container > p {
+    border: 1px solid black;
+    padding: 5px;
+    width: fit-content;
+    left: 170px;
+    top: -60px;
+    position: relative;
+    background: #F5F5F5;
+    border-radius: 3px;
+}
+
