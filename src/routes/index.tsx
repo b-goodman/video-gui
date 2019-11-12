@@ -13,12 +13,12 @@ interface Props {}
 const Routes: FunctionComponent<Props> = (props) => {
     return (
         <Switch>
-            <Route path="/" component={Main} />
             <Route path="/search/:searchTerm" component={AllSearchResults}/>
             <Route path="/video/:videoID" component={VideoSelected} />
             <Route path="/login" component={Login} />
             <PrivateRoute path="/admin" component={Admin} />
-            <Route path="*" component={NotFound} />
+            <Route exact path="/" component={Main} />
+            <Route path="/*" component={NotFound} />
         </Switch>
     )
 }

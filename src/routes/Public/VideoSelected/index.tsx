@@ -5,9 +5,7 @@ import  queryVideo from "../../../services/queryVideo";
 import VideoDocument from "../../../interfaces/VideoDocument"
 import "./index.scss";
 
-interface Props {
-
-}
+interface Props {}
 
 interface RouteParams {
     videoID: string;
@@ -31,7 +29,7 @@ const VideoTags: FunctionComponent<any> = (props) => {
     return (
         props.tags.map( (tag: string) => {
             return (
-                <Link className="tag" to={ urljoin(process.env.REACT_APP_ROUTES_SEARCH, tag)}>
+                <Link key={`tag-link-${tag}`} className="tag" to={ urljoin(process.env.REACT_APP_ROUTES_SEARCH, tag)}>
                     {tag}
                 </Link>
             )
@@ -39,21 +37,16 @@ const VideoTags: FunctionComponent<any> = (props) => {
     )
 };
 
-
 const VideoSelected: FunctionComponent<Props> = (props) => {
-
     const {videoID} = useParams<RouteParams>();
     const [videoData, setVideoData] = useState<VideoDocument>();
 
     useEffect( () => {
         queryVideo(videoID)
             .then( (data) => {
-                console.log(data);
                 setVideoData(data)
             })
     }, [videoID])
-
-
 
     return (
         <div>
