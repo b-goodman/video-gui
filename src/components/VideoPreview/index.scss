@@ -2,7 +2,13 @@
     width: 210px;
     height: 230px;
     cursor: pointer;
+
+    &[data-size="small"] {
+        width: 105px;
+        height: 115px;
+    }
 }
+
 
 *[data-visible='false'] {
     display: none;
@@ -21,5 +27,10 @@
     position: relative;
     background: #F5F5F5;
     border-radius: 3px;
+}
+
+.thumb-container > img, video {
+    width: inherit;
+    height: inherit;
 }
 

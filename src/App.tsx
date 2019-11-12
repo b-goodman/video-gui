@@ -1,25 +1,29 @@
 import React, {FunctionComponent} from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter, } from "react-router-dom";
+import store from "./store";
+import Header from "./components/Header";
+import Footer from "./components/Footer"
 
-import SearchBar from "./components/SearchBar";
+import Routes from "./routes";
 
-// import VideoThumb from "./components/VideoThumb";
-// import VideoSearchResult from "./interfaces/VideoSearchResult";
+interface Props {};
 
-// const video: VideoSearchResult = {
-//     videoID: "8lhqPA7j",
-//     title: "Test Video 5",
-//     duration: 10,
-// }
+const App: FunctionComponent<Props> = () => {
 
-const App: FunctionComponent<{}> = () => {
+    return(
+        <Provider store={store}>
+            <BrowserRouter>
 
-    const handleChange = (file?:File) => {
-        console.log(file);
-    }
+                <div>
+                    <Header/>
 
-    return (
-        <SearchBar />
+                        <Routes />
 
+                    <Footer/>
+                </div>
+            </BrowserRouter>
+        </Provider>
     )
 }
 

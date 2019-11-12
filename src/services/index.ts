@@ -1,5 +1,11 @@
 import searchVideos from "./searchVideos";
+import queryVideo from "./queryVideo";
+import requestToken from "./requestToken";
+import isAuth from "./isAuth";
 
 export {
-    searchVideos
+    requestToken,
+    isAuth,
+    searchVideos,
+    queryVideo
 }

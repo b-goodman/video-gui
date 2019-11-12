@@ -1,14 +1,15 @@
 import React, {FunctionComponent, useRef, useState} from "react";
-import VideoSerachResult from "../../interfaces/VideoSearchResult";
+import VideoSerachResult from "../../interfaces/VideoDocument";
 import {printTime} from "../../util";
-import "./index.css";
+import "./index.scss";
 
 interface Props {
-    size?: "small" | "regular";
     video: VideoSerachResult;
+    size?: "small" | "regular";
+    static?: boolean;
 }
 
-const VideoThumb: FunctionComponent<Props> = (props) => {
+const VideoPreview: FunctionComponent<Props> = (props) => {
 
     const [hasFocus, setFocus] = useState<boolean>(false);
 
@@ -31,16 +32,18 @@ const VideoThumb: FunctionComponent<Props> = (props) => {
 
             <div
                 className="thumb-container"
+                data-size={props.size}
                 onMouseEnter={handleMouseEntry}
                 onMouseLeave={handleMouseExit}
             >
 
                 <img
+                    alt=""
                     data-visible={!hasFocus}
-                    src={`${process.env.REACT_APP_API_ROOT}/video/thumbnail?videoID=${props.video.videoID}`}>
+                    src={`${process.env.REACT_APP_API_ROOT}${process.env.REACT_APP_SERVE_THUMBNAIL}/${props.video.videoID}`}>
                 </img>
 
-                <p data-visible={!hasFocus}>{printTime(props.video.duration)}</p>
+                {props.size !== "small" ? <p data-visible={!hasFocus}>{printTime(props.video.duration)}</p> : ""}
 
                 <video
                     ref={videoEl}
@@ -51,7 +54,7 @@ const VideoThumb: FunctionComponent<Props> = (props) => {
                 >
 
                     <source
-                        src={`${process.env.REACT_APP_API_ROOT}/video?videoID=${props.video.videoID}&preview=true`}
+                        src={`${process.env.REACT_APP_API_ROOT}${process.env.REACT_APP_SERVE_VIDEO}/${props.video.videoID}?preview=true`}
                         type="video/mp4"
                     />
 
@@ -59,11 +62,11 @@ const VideoThumb: FunctionComponent<Props> = (props) => {
                 </video>
             </div>
 
-            <h3>{props.video.title}</h3>
+            {props.size !== "small" ? <h3>{props.video.title}</h3> : ""}
 
         </div>
     );
 }
 
-export default VideoThumb;
+export default VideoPreview;
 

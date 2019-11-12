@@ -3,12 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bgoodman/http-client": "^1.0.0",
-    "@bgoodman/simple-file-upload": "@bgoodman/simple-file-upload",
+    "@bgoodman/http-client": "^1.2.1",
+    "@bgoodman/simple-file-upload": "^0.1.4",
+    "@types/react-router-dom": "^5.1.2",
     "p-throttle": "^3.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-icons": "^3.8.0"
+    "react-icons": "^3.8.0",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-starter-kit": "^1.0.1",
+    "redux-thunk": "^2.3.0",
+    "url-join": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,12 +40,15 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "24.0.22",
+    "@types/node": "12.12.7",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/url-join": "^4.0.0",
     "dotenv": "^8.2.0",
-    "typescript": "3.7.2",
+    "node-sass": "^4.13.0",
     "react-scripts": "3.2.0",
-    "@types/jest": "24.0.19",
-    "@types/node": "12.11.5",
-    "@types/react": "16.9.9",
-    "@types/react-dom": "16.9.2"
+    "typescript": "3.7.2"
   }
 }

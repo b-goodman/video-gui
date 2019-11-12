@@ -1,0 +1,12 @@
+.form-wrapper {
+    border: 1px solid black;
+
+    &[data-error='true'] {
+        border: 1px solid red;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+}
