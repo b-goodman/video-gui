@@ -4,6 +4,9 @@ import pThrottle from "p-throttle";
 import VideoPreview from "../VideoPreview";
 import VideoDocument from "../../interfaces/VideoDocument"
 import {searchVideos} from "../../services";
+
+import { MdSearch } from "react-icons/md";
+
 import "./index.scss";
 
 
@@ -73,15 +76,21 @@ const SearchBar: FunctionComponent<Props> = (props) => {
 
     return (
         <div>
-            <input
-                className="search-field"
-                type="text"
-                placeholder="Search Videos..."
-                value={searchTerm}
-                onChange={handleInput}
-                onFocus={showSuggestions}
-                onBlur={hideSuggestions}>
-            </input>
+
+            <div className="input-wrapper">
+                <div className="icon"><MdSearch /></div>
+                <div>
+                    <input
+                        className="search-field"
+                        type="text"
+                        placeholder="Search Videos..."
+                        value={searchTerm}
+                        onChange={handleInput}
+                        onFocus={showSuggestions}
+                        onBlur={hideSuggestions}>
+                    </input>
+                </div>
+            </div>
             <div className="suggestions" data-isopen={suggestionsIsOpen && searchResults.length > 0}>
                 <ul>
                     {[

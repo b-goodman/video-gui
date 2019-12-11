@@ -29,7 +29,7 @@ const VideoTags: FunctionComponent<any> = (props) => {
     return (
         props.tags.map( (tag: string) => {
             return (
-                <Link key={`tag-link-${tag}`} className="tag" to={ urljoin(process.env.REACT_APP_ROUTES_SEARCH, tag)}>
+                <Link key={`tag-link-${tag}`} className="tag" to={ urljoin(process.env.REACT_APP_ROUTE_SEARCH_VIDEO, tag)}>
                     {tag}
                 </Link>
             )

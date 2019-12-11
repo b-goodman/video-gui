@@ -2,6 +2,7 @@
   "name": "video-gui",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://videos.thebgoodman.com",
   "dependencies": {
     "@bgoodman/http-client": "^1.2.1",
     "@bgoodman/simple-file-upload": "^0.1.4",

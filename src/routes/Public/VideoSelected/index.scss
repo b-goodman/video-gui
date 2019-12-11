@@ -10,6 +10,8 @@
     border: 1px solid grey;
     border-radius: 3px;
     text-decoration: none;
+}
 
-
+video:focus {
+    outline: none;
 }

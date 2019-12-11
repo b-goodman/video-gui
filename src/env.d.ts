@@ -8,5 +8,6 @@ declare namespace NodeJS {
         REACT_APP_ROUTES_SEARCH: string;
         REACT_APP_LOGIN: string;
         REACT_APP_IS_AUTH: string;
+        REACT_APP_ROUTE_SEARCH_VIDEO: string;
     }
 }
