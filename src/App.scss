@@ -1,0 +1,28 @@
+@import "./styles/color";
+
+.section-wrapper {
+    padding-top: 1em;
+}
+
+section {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    // border: 1px solid $input-border-color;
+    h2 {
+        margin-top: 0px;
+    }
+}
+
+.main {
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, $page-bg-color 100%);
+    padding: 0px 1em 0 1em;
+    height: calc(100vh - 60px);
+}
+
+.video-grid {
+    flex-wrap: wrap;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}

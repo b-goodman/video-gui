@@ -1,8 +1,5 @@
-$search-bg-color: #C8E6C9;
-$search-bg-color-active: #D3F2D4;
-$suggestions-bg-color: white;
-$search-result-bg-color-hover: #EEEEEE;
-$text-color: #212121;
+@import "../../styles/color";
+@import "../../styles/input";
 
 * {
     font-family: sans-serif;
@@ -15,14 +12,15 @@ a {
 
 
 .input-wrapper {
-    background: $search-bg-color;
+    background: $input-bg-color;
     border-radius: 5px;
     display: flex;
-    width: 40px;
+    border: 1px solid #9E9E9E;
+    width: fit-content;
     &:hover {
-        background: $search-bg-color-active;
+        background: $input-bg-color-active;
         .search-field {
-            background: $search-bg-color-active;
+            background: $input-bg-color-active;
         }
     }
 
@@ -32,24 +30,6 @@ a {
             margin-top: 11px;
         }
     }
-
-    .search-field {
-        background: $search-bg-color;
-        border-radius: 5px;
-        padding: 10px;
-        width: 300px;
-        border: none;
-        font-size: 16px;
-        color: $text-color;
-
-        &:hover {
-            background: $search-bg-color-active;
-        }
-        &:focus {
-            outline: none;
-        }
-    }
-
 }
 
 .search-result {
@@ -59,7 +39,7 @@ a {
     padding: 5px;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &[data-hover='true']{
         background: $search-result-bg-color-hover;
     }
 
@@ -76,6 +56,7 @@ a {
     display: none;
     border: 1px solid black;
     list-style: none;
+    z-index: 2;
 
     &[data-isopen="true"] {
         display: block;

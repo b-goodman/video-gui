@@ -3,6 +3,7 @@ declare namespace NodeJS {
         REACT_APP_API_ROOT: string;
         REACT_APP_SERVE_THUMBNAIL: string;
         REACT_APP_SERVE_VIDEO: string;
+        REACT_APP_GET_LATEST_UPLOADS: string;
         REACT_APP_QUERY_VIDEO: string;
         REACT_APP_SEARCH_VIDEO: string;
         REACT_APP_ROUTES_SEARCH: string;

@@ -1,5 +1,5 @@
-import React, {FunctionComponent, useState, } from "react";
-import {Link} from "react-router-dom";
+import React, {FunctionComponent, useState} from "react";
+import {Link, useHistory} from "react-router-dom";
 import pThrottle from "p-throttle";
 import VideoPreview from "../VideoPreview";
 import VideoDocument from "../../interfaces/VideoDocument"
@@ -10,13 +10,13 @@ import { MdSearch } from "react-icons/md";
 import "./index.scss";
 
 
-const searchEntry = (result: VideoDocument, onClick: (videoID: VideoDocument["videoID"]) => void) => {
+const searchEntry = (result: VideoDocument, isSelected: boolean, onClick: (videoID: VideoDocument["videoID"]) => void) => {
     return (
         <li key={`result-${result.videoID}`} onClick={() => onClick(result.videoID)}>
             <Link to={`/video/${result.videoID}`}>
-                <div className="search-result">
+                <div className="search-result" data-hover={isSelected}>
                     <div>{result.title}</div>
-                    <VideoPreview key={result.videoID} video={result} size="small"/>
+                    <VideoPreview key={result.videoID} isSelected={isSelected} video={result} size="small"/>
                 </div>
             </Link>
         </li>
@@ -42,11 +42,14 @@ interface Props {
 
 const SearchBar: FunctionComponent<Props> = (props) => {
 
+    const history = useHistory();
+
     const maxResults = props.maxResults || 4;
 
     const [searchResults, updateSearchResults] = useState<VideoDocument[]>([]);
     const [suggestionsIsOpen, setSuggestionsOpen] = useState<boolean>(false);
-    const [searchTerm, setSearchTerm] = useState<string>("")
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [keyboardSelection, setKeyboardSelection] = useState<number>(0);
 
     const searchResultsThrottled = pThrottle( (query:string) => searchVideos(query), 1, 500 );
 
@@ -67,10 +70,40 @@ const SearchBar: FunctionComponent<Props> = (props) => {
 
     const hideSuggestions = () => {
         window.setTimeout( () => setSuggestionsOpen(false), 500);
+        setKeyboardSelection(0);
     }
 
     const handleSearchResultClick = (videoID: VideoDocument["videoID"]) => {
         console.log("search ",videoID)
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        console.log(event.key)
+        switch (event.key) {
+            case "ArrowDown": //move selection down list
+                if (keyboardSelection < searchResults.length - 1) {
+                    setKeyboardSelection(keyboardSelection + 1)
+                } else {
+                    setKeyboardSelection(0)
+                }
+                break;
+            case "ArrowUp":
+                    if (keyboardSelection > 0) {
+                        setKeyboardSelection(keyboardSelection - 1)
+                    } else {
+                        setKeyboardSelection(searchResults.length - 1)
+                    }
+                break;
+            case "Escape":
+                hideSuggestions();
+                break;
+            case "Enter":
+                history.push(`/video/${searchResults[keyboardSelection].videoID}`);
+                hideSuggestions();
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -87,7 +120,9 @@ const SearchBar: FunctionComponent<Props> = (props) => {
                         value={searchTerm}
                         onChange={handleInput}
                         onFocus={showSuggestions}
-                        onBlur={hideSuggestions}>
+                        onBlur={hideSuggestions}
+                        onKeyDown={handleKeyDown}
+                    >
                     </input>
                 </div>
             </div>
@@ -95,7 +130,9 @@ const SearchBar: FunctionComponent<Props> = (props) => {
                 <ul>
                     {[
                         //search results
-                        ...searchResults.slice(0, maxResults).map( (result) => searchEntry(result, handleSearchResultClick) ),
+                        ...searchResults.slice(0, maxResults).map( (result, index) => {
+                            return searchEntry(result, index === keyboardSelection, handleSearchResultClick)
+                        }),
                         // optional 'see all' btn
                         searchResults.length > maxResults ? viewAllSearch(searchTerm) : []
                     ]}

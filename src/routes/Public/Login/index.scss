@@ -1,12 +1,33 @@
+@import "../../../styles/_color.scss";
+@import "../../../styles/_input.scss";
+
+form {
+    align-items: center;
+}
+
+
+
 .form-wrapper {
-    border: 1px solid black;
+    margin: 0 auto;
+    border: 1px solid $text-color;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 4px;
 
     &[data-error='true'] {
-        border: 1px solid red;
+        border: 1px solid $form-error-color-border;
+    }
+
+    h2 {
+        margin-top: 0px;
     }
 
     form {
         display: flex;
         flex-direction: column;
+
+        div:not(:last-of-type) {
+            margin-bottom: 1em;
+        }
     }
 }

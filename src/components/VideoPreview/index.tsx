@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useRef, useState} from "react";
+import React, {FunctionComponent, useRef, useState, useEffect} from "react";
 import VideoSerachResult from "../../interfaces/VideoDocument";
 import {printTime} from "../../util";
 import "./index.scss";
@@ -7,34 +7,44 @@ interface Props {
     video: VideoSerachResult;
     size?: "small" | "regular";
     static?: boolean;
+    isSelected?: boolean;
 }
 
 const VideoPreview: FunctionComponent<Props> = (props) => {
 
     const [hasFocus, setFocus] = useState<boolean>(false);
 
+    useEffect(() => {
+        if (props.isSelected) {
+            beginPreviewPlayback()
+        } else {
+            stopPreviewPlayback()
+        }
+    }, [props.isSelected])
+
     // const size = props.size || "small";
     const videoEl = useRef<HTMLVideoElement>(null);
 
-    const handleMouseEntry = () => {
+    const beginPreviewPlayback = () => {
         setFocus(true);
         videoEl.current!.play();
     }
 
-    const handleMouseExit = () => {
+    const stopPreviewPlayback = () => {
         setFocus(false);
         videoEl.current!.pause();
         videoEl.current!.currentTime = 0;
     }
 
     return (
-        <div>
+        <div
+            onMouseEnter={beginPreviewPlayback}
+            onMouseLeave={stopPreviewPlayback}
+        >
 
             <div
                 className="thumb-container"
                 data-size={props.size}
-                onMouseEnter={handleMouseEntry}
-                onMouseLeave={handleMouseExit}
             >
 
                 <img

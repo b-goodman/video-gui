@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import {requestToken} from "../../../services";
 import {SetJwtAction, SET_JWT} from "../../../actions/setJWT";
+import { MdAccountCircle, MdLockOutline } from "react-icons/md";
+
 import "./index.scss"
 
 interface Props {
@@ -49,27 +51,26 @@ const Login: FunctionComponent<Props> = (props) => {
     }
 
     return (
-        <div className="form-wrapper" data-error={error.err ? true : false}>
-            <form>
-                <div>
-                    <label>
-                        Username:
-                        <input type="string" placeholder="username" name="name" value={credentials.name} onChange={handleInput}></input>
-                    </label>
-                </div>
+        <section>
+            <div className="form-wrapper" data-error={error.err ? true : false}>
+                <h2>Login</h2>
+                <form>
+                    <div className="input-wrapper">
+                        <div className="icon"><MdAccountCircle /></div>
+                        <input type="string" placeholder="Username" name="name" value={credentials.name} onChange={handleInput}></input>
+                    </div>
 
-                <div>
-                    <label>
-                        Pasword:
-                        <input type="password" placeholder="password" name="password" value={credentials.password} onChange={handleInput}></input>
-                    </label>
-                </div>
+                    <div className="input-wrapper">
+                        <div className="icon"><MdLockOutline /></div>
+                        <input type="password" placeholder="Password" name="password" value={credentials.password} onChange={handleInput}></input>
+                    </div>
 
-                <div>
-                    <input type="button" value="Login" onClick={handleSubmit}></input>
-                </div>
-            </form>
-        </div>
+                    <div>
+                        <input type="button" value="Login" onClick={handleSubmit}></input>
+                    </div>
+                </form>
+            </div>
+        </section>
     )
 }
 

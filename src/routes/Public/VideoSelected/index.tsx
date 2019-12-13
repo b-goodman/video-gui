@@ -12,17 +12,17 @@ interface RouteParams {
 }
 
 const Video: FunctionComponent<{videoID: string}> = ({videoID}) => {
-    return <video
-    // ref={videoEl}
-    controls={true}
-    muted
->
-    <source
-        src={`${process.env.REACT_APP_API_ROOT}${process.env.REACT_APP_SERVE_VIDEO}/${videoID}`}
-        type="video/mp4"
-    />
-    Sorry, your browser doesn't support embedded videos.
-</video>
+    return (
+        <video
+            controls={true}
+        >
+            <source
+                src={`${process.env.REACT_APP_API_ROOT}${process.env.REACT_APP_SERVE_VIDEO}/${videoID}`}
+                type="video/mp4"
+            />
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+    )
 };
 
 const VideoTags: FunctionComponent<any> = (props) => {
@@ -50,12 +50,14 @@ const VideoSelected: FunctionComponent<Props> = (props) => {
 
     return (
         <div>
-            {videoData ? <h1>{videoData.title}</h1> : null}
-            <Video videoID={videoID}/>
-            <div className="video-tags">
-                {videoData ? <VideoTags tags={videoData.tags}/> : null}
-            </div>
-            {videoData ? <p>{videoData.description}</p> : null}
+            <section>
+                {videoData ? <h1>{videoData.title}</h1> : null}
+                <Video videoID={videoID}/>
+                <div className="video-tags">
+                    {videoData ? <VideoTags tags={videoData.tags}/> : null}
+                </div>
+                {videoData ? <p>{videoData.description}</p> : null}
+            </section>
         </div>
     );
 }

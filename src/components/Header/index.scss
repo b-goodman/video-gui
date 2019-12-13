@@ -1,6 +1,22 @@
-$header-bg-color: #F7FFF8;
+@import "../../styles/_color.scss";
+
 
 header {
+
     padding: 10px;
-    background: $header-bg-color;
+    background: $page-bg-color;
+}
+
+nav {
+    display: flex;
+}
+
+.home-link {
+    margin: 0 1em 0 0;
+    svg {
+        color: $icon-color;
+        margin-top: 6px;
+        position: relative;
+        font-size: 26px;
+    }
 }

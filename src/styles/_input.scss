@@ -1,0 +1,48 @@
+$input-font-weight-active: 600;
+
+input {
+    background: $input-bg-color;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    font-size: 16px;
+    color: $text-color;
+    &:hover {
+        background: $input-bg-color-active;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+input[type="button"] {
+    height: 40px;
+    border: 1px solid $input-border-color;
+    &:focus {
+        font-weight: $input-font-weight-active;
+        box-shadow: 1px 1px $input-border-color-active;
+    }
+}
+
+
+.input-wrapper {
+    background: $input-bg-color;
+    border-radius: 5px;
+    display: flex;
+    border: 1px solid $input-border-color;
+    width: fit-content;
+    &:hover {
+        background: $input-bg-color-active;
+        .search-field {
+            background: $input-bg-color-active;
+        }
+    }
+
+    .icon {
+        padding-left: 10px;
+        svg {
+            margin-top: 11px;
+        }
+    }
+}

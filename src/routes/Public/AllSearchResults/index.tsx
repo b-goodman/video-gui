@@ -10,7 +10,7 @@ const renderVideoThumb = (result: VideoDocument) => {
     return (
         <Link to={`/video/${result.videoID}`}>
             <VideoPreview video={result}/>
-            </Link>
+        </Link>
         )
     };
 
@@ -32,9 +32,12 @@ const AllSearchResults: FunctionComponent<Props> = (props) => {
     }, [searchTerm])
 
     return (
-        <div>
-            {searchResults.map(renderVideoThumb)}
-        </div>
+        <section>
+            <h2>Search: {searchTerm}</h2>
+            <div className="video-grid">
+                {searchResults.map(renderVideoThumb)}
+            </div>
+        </section>
     )
 }
 
