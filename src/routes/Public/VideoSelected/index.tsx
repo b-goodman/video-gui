@@ -14,6 +14,7 @@ interface RouteParams {
 const Video: FunctionComponent<{videoID: string}> = ({videoID}) => {
     return (
         <video
+            className="selected"
             controls={true}
         >
             <source
